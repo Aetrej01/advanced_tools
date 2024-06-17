@@ -1,0 +1,419 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{siunitx}
+
+  \newcolumntype{d}{S[
+    input-open-uncertainty=,
+    input-close-uncertainty=,
+    parse-numbers = false,
+    table-align-text-pre=false,
+    table-align-text-post=false
+  ]}
+  
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ICA 5},
+  pdfauthor={Alice Trejo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{ICA 5}
+\author{Alice Trejo}
+\date{2024-03-10}
+
+\begin{document}
+\maketitle
+
+\hypertarget{customer-churn}{%
+\subsection{Customer Churn}\label{customer-churn}}
+
+In this assignment, you will estimate a survival analysis model on
+customer churn. In this dataset, you will find various characteristics
+about a set of phone company customers
+
+customerID: Customer ID number gender: Provides the stated gender of the
+customer SeniorCitizen: States if the person is a senior citizen
+Partner: Does the person have a partner Dependents: Does the person have
+dependents tenure: States how long the person has been with the Bank
+PhoneService: Do they have phone service MultipleLines: Do they have
+multiple lines InternetService: What type of Internet Service do they
+have (DSL, fiber optic, none) OnlineSecurity: Do they have online
+security? OnlineBackup: Do they have online backup? DeviceProtection: Do
+they have device protection? TechSupport: Did they use tech support?
+StreamingTV: Do they use the internet to stream TV? StreamingMovies: Do
+they use the internet to stream movies? Contract: What type of contract
+do they have (month-to-month, one-year, or two year) PaperlessBilling:
+Do they use paperless biling PaymentMethod: How do they pay for services
+MonthlyCharges: What is their monthly charge? TotalCharges: What is
+their total charge for the quarter? Churn: Did they leave the company
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Find the simple average of \texttt{tenure}. Explain why this simple
+  average can be biased.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{Churn }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"WA\_Fn{-}UseC\_{-}Telco{-}Customer{-}Churn.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The average time a customer spends with the bank is 32.37. ANS: The
+simple average of customer tenure can be misleading due to several
+biases. Survivorship bias can overestimate average tenure as long-term
+customers are more likely to appear in the data. Right censoring
+introduces uncertainty as we don't know the total tenure of customers
+who haven't churned by the time the data was collected. The average
+tenure can be skewed downwards if the company has been growing and
+acquiring more customers over time, leading to a larger number of
+customers with shorter tenures. Cohort effects can also influence
+average tenure, as customers who joined at different times may have
+different average tenures. These factors suggest that it's often more
+informative to look at the distribution of tenure or to model churn
+directly using survival analysis techniques.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Find the simple average of \texttt{tenure} by the following groups.
+  Gender, SeniorCitizen, and Partner.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\CommentTok{\#aggregate(Churn$tenure,by=list(Churn$gender,churn$SeniorCitizen,Churn$Partner),FUN=mean)}
+\NormalTok{tab1}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(Churn}\SpecialCharTok{$}\NormalTok{tenure,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(Churn}\SpecialCharTok{$}\NormalTok{gender,Churn}\SpecialCharTok{$}\NormalTok{SeniorCitizen,Churn}\SpecialCharTok{$}\NormalTok{Partner),}\AttributeTok{FUN=}\NormalTok{mean)}
+\FunctionTok{names}\NormalTok{(tab1)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Gender"}\NormalTok{, }\StringTok{"Senior Citizen"}\NormalTok{, }\StringTok{"Partnered"}\NormalTok{, }\StringTok{"Mean Tenure"}\NormalTok{)}
+\FunctionTok{kable}\NormalTok{(tab1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrlr@{}}
+\toprule\noalign{}
+Gender & Senior Citizen & Partnered & Mean Tenure \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Female & 0 & No & 22.87432 \\
+Male & 0 & No & 23.18970 \\
+Female & 1 & No & 24.85938 \\
+Male & 1 & No & 25.37751 \\
+Female & 0 & Yes & 41.72639 \\
+Male & 0 & Yes & 42.55436 \\
+Female & 1 & Yes & 42.63710 \\
+Male & 1 & Yes & 40.54154 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#library(modelsummary)}
+\CommentTok{\#datasummary(tenure\textasciitilde{}Mean*(gender), data=Churn)}
+\CommentTok{\#datasummary(tenure\textasciitilde{}Mean*(SeniorCitizen), data=Churn)}
+\CommentTok{\#datasummary(tenure\textasciitilde{}Mean*(gender)+Mean*(Partner), data = Churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Find the simple average of \texttt{tenure} and \texttt{MonthlyCharge}
+  by \texttt{Contract} type.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Version 2.0.0 of `modelsummary`, to be released soon, will introduce a
+##   breaking change: The default table-drawing package will be `tinytable`
+##   instead of `kableExtra`. All currently supported table-drawing packages
+##   will continue to be supported for the foreseeable future, including
+##   `kableExtra`, `gt`, `huxtable`, `flextable, and `DT`.
+##   
+##   You can always call the `config_modelsummary()` function to change the
+##   default table-drawing package in persistent fashion. To try `tinytable`
+##   now:
+##   
+##   config_modelsummary(factory_default = 'tinytable')
+##   
+##   To set the default back to `kableExtra`:
+##   
+##   config_modelsummary(factory_default = 'kableExtra')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{datasummary}\NormalTok{((}\StringTok{\textasciigrave{}}\AttributeTok{Tenure}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{tenure)}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Monthly Charges}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{MonthlyCharges)}\SpecialCharTok{\textasciitilde{}}\NormalTok{Mean}\SpecialCharTok{*}\NormalTok{(Contract), }\AttributeTok{data =}\NormalTok{ Churn)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  & Month-to-month & One year & Two year\\
+\midrule
+Tenure & \num{18.04} & \num{42.04} & \num{56.74}\\
+Monthly Charges & \num{66.40} & \num{65.05} & \num{60.77}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Estimate a Kaplan Meier survival model. Use gender and senior citizen
+  as explanatory variables. Do these variables produce statistically
+  different survival rates?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(survival)}
+\NormalTok{Churn}\SpecialCharTok{$}\NormalTok{churn1 }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{Churn}\SpecialCharTok{$}\NormalTok{churn1[Churn}\SpecialCharTok{$}\NormalTok{Churn}\SpecialCharTok{==}\StringTok{"Yes"}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{1}
+\NormalTok{survminer}\SpecialCharTok{::}\FunctionTok{ggsurvplot}\NormalTok{(}
+    \AttributeTok{fit =}\NormalTok{ survival}\SpecialCharTok{::}\FunctionTok{survfit}\NormalTok{(survival}\SpecialCharTok{::}\FunctionTok{Surv}\NormalTok{(tenure, churn1) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ gender}\SpecialCharTok{+}\NormalTok{SeniorCitizen, }\AttributeTok{data =}\NormalTok{ Churn), }
+    \AttributeTok{xlab =} \StringTok{"Days"}\NormalTok{,}
+    \AttributeTok{ylab =} \StringTok{"Overall survival probability"}\NormalTok{,}
+    \AttributeTok{legend.title =} \StringTok{"Types of People"}\NormalTok{,}
+    \AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{legend.labs =} \FunctionTok{c}\NormalTok{(}\StringTok{"Female \& Non Senior"}\NormalTok{, }\StringTok{"Female \& Senior"}\NormalTok{,}\StringTok{"Male \& Non Senior"}\NormalTok{,}\StringTok{"Male \& Senior"}\NormalTok{),}
+    \AttributeTok{break.x.by =} \DecValTok{100}\NormalTok{, }
+    \AttributeTok{censor =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ICA5_files/figure-latex/unnamed-chunk-4-1.pdf} Answer:
+It appears that the Female \& Non Senior and Male \& Non Senior groups
+have higher survival probabilities over time compared to the Female \&
+Senior and Male \& Senior groups. This suggests that being a senior
+citizen may be associated with lower survival rates, regardless of
+gender.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Estimate a Kaplan Meier survival model that uses contract type as the
+  explanatory variable. Do we see a difference between contract type?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Churn}\SpecialCharTok{$}\NormalTok{churn1 }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{Churn}\SpecialCharTok{$}\NormalTok{churn1[Churn}\SpecialCharTok{$}\NormalTok{Churn}\SpecialCharTok{==}\StringTok{"Yes"}\NormalTok{]}\OtherTok{\textless{}{-}}\DecValTok{1}
+\NormalTok{survminer}\SpecialCharTok{::}\FunctionTok{ggsurvplot}\NormalTok{(}
+    \AttributeTok{fit =}\NormalTok{ survival}\SpecialCharTok{::}\FunctionTok{survfit}\NormalTok{(survival}\SpecialCharTok{::}\FunctionTok{Surv}\NormalTok{(tenure, churn1) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Contract, }\AttributeTok{data =}\NormalTok{ Churn), }
+    \AttributeTok{xlab =} \StringTok{"Days"}\NormalTok{,}
+    \AttributeTok{ylab =} \StringTok{"Overall survival probability"}\NormalTok{,}
+    \AttributeTok{legend.title =} \StringTok{"Contract Type"}\NormalTok{,}
+    \AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{,}
+    \AttributeTok{legend.labs =} \FunctionTok{c}\NormalTok{(}\StringTok{"Month to Month"}\NormalTok{, }\StringTok{"One Year"}\NormalTok{,}\StringTok{"Two Year"}\NormalTok{),}
+    \AttributeTok{break.x.by =} \DecValTok{100}\NormalTok{, }
+    \AttributeTok{censor =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ICA5_files/figure-latex/unnamed-chunk-5-1.pdf} Answer:
+Month to Month, It shows a steep drop, signifying a high probability of
+churn in a shorter period. One Year, It presents a moderate fall,
+indicating a churn rate that is lower than Month to Month contracts but
+higher than Two Year contracts. Two Year: It displays the most gradual
+decrease, suggesting the greatest retention rate among the three
+contract categories. In conclusion, the chart underscores the
+substantial influence of contract duration on the likelihood of churn,
+with Two Year contracts correlating with the smallest churn rate,
+followed by One Year contracts, and Month to Month contracts exhibiting
+the highest churn rate.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Estimate a Cox proportional hazard model of \texttt{tenure}. Use the
+  following variables as explanatory variables: gender, seniorcitizen,
+  contract type, partner, dependents, type of internet access, do they
+  have phone service, and do they use paperless billing.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FIT }\OtherTok{\textless{}{-}}\NormalTok{ survival}\SpecialCharTok{::}\FunctionTok{coxph}\NormalTok{(survival}\SpecialCharTok{::}\FunctionTok{Surv}\NormalTok{(tenure, churn1) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Contract }\SpecialCharTok{+}\NormalTok{ gender }\SpecialCharTok{+}\NormalTok{ SeniorCitizen }\SpecialCharTok{+}\NormalTok{ Partner }\SpecialCharTok{+}\NormalTok{ Dependents }\SpecialCharTok{+}\NormalTok{ InternetService }\SpecialCharTok{+}\NormalTok{ PhoneService }\SpecialCharTok{+}\NormalTok{ PaperlessBilling, }\AttributeTok{data =}\NormalTok{ Churn)}
+
+\NormalTok{name2\_fit }\OtherTok{\textless{}{-}}\NormalTok{ broom}\SpecialCharTok{::}\FunctionTok{tidy}\NormalTok{(FIT)}
+\FunctionTok{colnames}\NormalTok{(name2\_fit) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Term"}\NormalTok{, }\StringTok{"Estimate"}\NormalTok{, }\StringTok{"Standard Error"}\NormalTok{, }\StringTok{"Statistic"}\NormalTok{, }\StringTok{"p value"}\NormalTok{)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"ContractOne year"}\NormalTok{, }\StringTok{"Contract= One year"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"ContractTwo year"}\NormalTok{, }\StringTok{"Contract= Two year"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"genderMale"}\NormalTok{, }\StringTok{"Gender= Male"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"SeniorCitizen"}\NormalTok{, }\StringTok{"Senior Citizen"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"PartnerYes"}\NormalTok{, }\StringTok{"Partner= Yes"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"DependentsYes"}\NormalTok{, }\StringTok{"Dependents= Yes"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"InternetServiceFiber optic"}\NormalTok{, }\StringTok{"Internet Service= Fiber optic"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"InternetServiceNo"}\NormalTok{, }\StringTok{"Internet Service= No"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"PhoneServiceYes"}\NormalTok{, }\StringTok{"Phone Service= Yes"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+\NormalTok{name2\_fit}\SpecialCharTok{$}\NormalTok{Term }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"PaperlessBillingYes"}\NormalTok{, }\StringTok{"Paperless Billing= Yes"}\NormalTok{, name2\_fit}\SpecialCharTok{$}\NormalTok{Term)}
+
+\FunctionTok{print}\NormalTok{(name2\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 5
+##    Term                          Estimate `Standard Error` Statistic `p value`
+##    <chr>                            <dbl>            <dbl>     <dbl>     <dbl>
+##  1 Contract= One year             -2.03             0.0850   -23.9   8.42e-126
+##  2 Contract= Two year             -3.90             0.160    -24.4   1.36e-131
+##  3 Gender= Male                   -0.0443           0.0463    -0.956 3.39e-  1
+##  4 Senior Citizen                 -0.0626           0.0558    -1.12  2.62e-  1
+##  5 Partner= Yes                   -0.611            0.0543   -11.3   2.25e- 29
+##  6 Dependents= Yes                -0.0946           0.0681    -1.39  1.65e-  1
+##  7 Internet Service= Fiber optic   0.360            0.0678     5.32  1.05e-  7
+##  8 Internet Service= No           -0.225            0.112     -2.00  4.53e-  2
+##  9 Phone Service= Yes             -0.123            0.0974    -1.26  2.08e-  1
+## 10 Paperless Billing= Yes          0.123            0.0561     2.20  2.80e-  2
+\end{verbatim}
+
+One year lower hazard Males have slightly lower Partner lower
+
+\end{document}

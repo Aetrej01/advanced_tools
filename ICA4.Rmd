@@ -1,0 +1,107 @@
+---
+title: "ICA4"
+author: "Alice Trejo"
+date: "MSBA Data Analytics III"
+output:
+  html_document:
+    df_print: paged
+---
+
+Question 1
+
+You are given data on people watching streaming tv. You know the age of the person, their income, and if they received a coupon for the service. You can also know the number of streaming hours for each person during a given week. Use the dataset "streaming_data.RData" for this question
+
+a) Find the descriptive statistics of the dataset.(i.e use data summary)
+```{r}
+load("~/UofL/MSBA/Advanced Tools/ICA4/streaming_data.RData")
+stream <- data.frame(age, coupon, income, streaminghours)
+stream$incomeper10 <- stream$income/10000
+names(stream)<- c("Age","Coupon","Income", "Streaming Hours","Income per 10k")
+library(modelsummary)
+datasummary_skim(stream)
+```
+
+b) Run OLS on the dataset.Estimate a model of streaming hours on the explanatory variables.
+```{r}
+
+reg1 <- lm(`Streaming Hours` ~ Age+Coupon+ `Income per 10k`, data = stream)
+modelsummary(list("OLS"=reg1),stars = TRUE)
+```
+
+c) Notice that the number of streaming hours cannot be negative. Run a Tobit model to estimate streaming hours.
+```{r warning=FALSE, message=FALSE}
+#install.packages('AER')
+library(AER)
+reg2 <- tobit(`Streaming Hours` ~ Age+Coupon+ `Income per 10k`, data = stream)
+modelsummary(list("OLS"=reg1,"Tobit"=reg2), stars = TRUE)
+```
+
+d) What are the differences between c and a?
+
+#Ans: Both the OLS and Tobit models indicate that Age and Income per 10k significantly affect the dependent variable. Age has a positive effect, meaning as age increases, the dependent variable also increases. Conversely, Income per 10k has a negative effect, implying that as income increases, the dependent variable decreases. The variable Coupon does not significantly affect the dependent variable in either model. The Tobit model shows a stronger relationship between the dependent variable and the independent variables Age and Income per 10k compared to the OLS model. 
+
+
+
+e) What is the marginal effect of coupons?
+```{r}
+#install.packages('censReg')
+library(censReg)
+estResult <- censReg(`Streaming Hours` ~ Age+Coupon+ `Income per 10k`, data = stream)
+#knitr::kable(margEff(estResult))
+
+
+marginal_effects <- margEff(estResult)
+knitr::kable(marginal_effects, col.names = c("Variables", "Effect Sizes"))
+```
+
+
+Question 2
+
+In this analysis, you will use customer level data on travel expenditures. You will observe the following variables. Use the dataset "tour_data.RData" for this question.
+
+Variables | Description
+----------|-------------
+income | Household income
+education | Education level of the household head
+health | Health status index of the household members
+tripweather | Weather quality in the destination of the trip
+participation | Dummy variable for tourism participation
+expenditure | Total household tourism expenditure
+
+a) Estimate a regression model of expenditures on income, education, and tripweather.
+```{r}
+load("~/UofL/MSBA/Advanced Tools/ICA4/tour_data.RData")
+names(tourexp)<-c("Income", "Education", "Health", "Trip weather", "Participation", "Expenditures")
+
+reg3<- lm(Expenditures ~ Income+Education+`Trip weather`, data=tourexp)
+modelsummary(list("Linear Model"=reg3),stars=TRUE)
+```
+
+
+b) Estimate a probit model on participation using income, education, and health
+```{r}
+reg4<- glm(Participation ~ Income+Education+Health, data=tourexp, family = binomial(link = "probit"))
+
+modelsummary(list("Probit"=reg4), stars = TRUE)
+```
+
+c) Estimate a sample selection model of tourism expenditures.
+```{r}
+library(sampleSelection)
+reg5<- heckit(Participation ~ Income+Education+Health, Expenditures ~ Income+Education+`Trip weather`, data=tourexp, method = "2step")
+
+cr_reg_4 <- c("XS(Intercept)"="(Intercept)", "XSIncome" = "Income", "XSEducation"="Education", "XSHealth" = "Health", "XO(Intercept)"="(Intercept)", "XOIncome" = "Income", "XOEducation"="Education", "XOTrip weather"= "Trip weather", "imrData$IMR1"="Inverse Mills Ratio")
+
+modelsummary(list("Probit Model"=reg5$probit, "Linear Model"=reg5$lm), stars = TRUE, coef_rename = cr_reg_4)
+#something weird is happening
+#reg5$ 1=Probit, 2=Outcome, fix the names
+```
+
+
+d) Compare your estimates in a) and c). Do you detect sample selection bias? How do you know?
+
+# invMillsRatio, We do have sample selection bias because is not 0. The sample was too ???. Check the slide with the alpha.
+# The Inverse Mills Ratio is statistically significant, suggesting that there is sample selection bias in the data (Positive Bias). The R-squared value indicates that approximately 85.1% of the variability in the dependent variable can be explained by the independent variables in the model. The adjusted R-squared is 0.849, which adjusts the R-squared value based on the number of predictors in the model. These are high values, suggesting a good fit of the model to the data. To conclude, there appears to be sample selection bias in the data. However, the models seem to fit the data well based on the R-squared, adjusted R-squared, AIC, BIC, and RMSE values. 
+
+
+

@@ -1,0 +1,598 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{siunitx}
+
+  \newcolumntype{d}{S[
+    input-open-uncertainty=,
+    input-close-uncertainty=,
+    parse-numbers = false,
+    table-align-text-pre=false,
+    table-align-text-post=false
+  ]}
+  
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ICA4},
+  pdfauthor={Alice Trejo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{ICA4}
+\author{Alice Trejo}
+\date{MSBA Data Analytics III}
+
+\begin{document}
+\maketitle
+
+Question 1
+
+You are given data on people watching streaming tv. You know the age of
+the person, their income, and if they received a coupon for the service.
+You can also know the number of streaming hours for each person during a
+given week. Use the dataset ``streaming\_data.RData'' for this question
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Find the descriptive statistics of the dataset.(i.e use data summary)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"\textasciitilde{}/UofL/MSBA/Advanced Tools/ICA4/streaming\_data.RData"}\NormalTok{)}
+\NormalTok{stream }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(age, coupon, income, streaminghours)}
+\NormalTok{stream}\SpecialCharTok{$}\NormalTok{incomeper10 }\OtherTok{\textless{}{-}}\NormalTok{ stream}\SpecialCharTok{$}\NormalTok{income}\SpecialCharTok{/}\DecValTok{10000}
+\FunctionTok{names}\NormalTok{(stream)}\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Age"}\NormalTok{,}\StringTok{"Coupon"}\NormalTok{,}\StringTok{"Income"}\NormalTok{, }\StringTok{"Streaming Hours"}\NormalTok{,}\StringTok{"Income per 10k"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Version 2.0.0 of `modelsummary`, to be released soon, will introduce a
+##   breaking change: The default table-drawing package will be `tinytable`
+##   instead of `kableExtra`. All currently supported table-drawing packages
+##   will continue to be supported for the foreseeable future, including
+##   `kableExtra`, `gt`, `huxtable`, `flextable, and `DT`.
+##   
+##   You can always call the `config_modelsummary()` function to change the
+##   default table-drawing package in persistent fashion. To try `tinytable`
+##   now:
+##   
+##   config_modelsummary(factory_default = 'tinytable')
+##   
+##   To set the default back to `kableExtra`:
+##   
+##   config_modelsummary(factory_default = 'kableExtra')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{datasummary\_skim}\NormalTok{(stream)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrrrr>{}r}
+\toprule
+  & Unique & Missing Pct. & Mean & SD & Min & Median & Max &   \\
+\midrule
+Age & 1567 & 0 & \num{44.0} & \num{15.0} & \num{-3.7} & \num{43.6} & \num{92.6} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/alice/OneDrive/Documents/UofL/MSBA/Advanced Tools/ICA4/ICA4_files/figure-latex/hist_9e42493316.pdf}\\
+Coupon & 2 & 0 & \num{0.3} & \num{0.5} & \num{0.0} & \num{0.0} & \num{1.0} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/alice/OneDrive/Documents/UofL/MSBA/Advanced Tools/ICA4/ICA4_files/figure-latex/hist_9e4122e32f2.pdf}\\
+Income & 1567 & 0 & \num{56101.7} & \num{10210.6} & \num{18590.1} & \num{56074.2} & \num{94364.1} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/alice/OneDrive/Documents/UofL/MSBA/Advanced Tools/ICA4/ICA4_files/figure-latex/hist_9e428ce7aaa.pdf}\\
+Streaming Hours & 585 & 0 & \num{3.2} & \num{5.8} & \num{0.0} & \num{0.0} & \num{42.6} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/alice/OneDrive/Documents/UofL/MSBA/Advanced Tools/ICA4/ICA4_files/figure-latex/hist_9e4364c6ac8.pdf}\\
+Income per 10k & 1567 & 0 & \num{5.6} & \num{1.0} & \num{1.9} & \num{5.6} & \num{9.4} & \includegraphics[width=0.67in, height=0.17in]{C:/Users/alice/OneDrive/Documents/UofL/MSBA/Advanced Tools/ICA4/ICA4_files/figure-latex/hist_9e45d033b46.pdf}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Run OLS on the dataset.Estimate a model of streaming hours on the
+  explanatory variables.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Streaming Hours}\StringTok{\textasciigrave{}} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Age}\SpecialCharTok{+}\NormalTok{Coupon}\SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{Income per 10k}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{data =}\NormalTok{ stream)}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"OLS"}\OtherTok{=}\NormalTok{reg1),}\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & OLS\\
+\midrule
+(Intercept) & \num{6.504}***\\
+ & (\num{0.896})\\
+Age & \num{0.028}**\\
+ & (\num{0.010})\\
+Coupon & \num{0.159}\\
+ & (\num{0.311})\\
+Income per 10k & \num{-0.828}***\\
+ & (\num{0.141})\\
+\midrule
+Num.Obs. & \num{1567}\\
+R2 & \num{0.026}\\
+R2 Adj. & \num{0.024}\\
+AIC & \num{9906.6}\\
+BIC & \num{9933.4}\\
+Log.Lik. & \num{-4948.287}\\
+F & \num{13.959}\\
+RMSE & \num{5.69}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Notice that the number of streaming hours cannot be negative. Run a
+  Tobit model to estimate streaming hours.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages(\textquotesingle{}AER\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(AER)}
+\NormalTok{reg2 }\OtherTok{\textless{}{-}} \FunctionTok{tobit}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Streaming Hours}\StringTok{\textasciigrave{}} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Age}\SpecialCharTok{+}\NormalTok{Coupon}\SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{Income per 10k}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{data =}\NormalTok{ stream)}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"OLS"}\OtherTok{=}\NormalTok{reg1,}\StringTok{"Tobit"}\OtherTok{=}\NormalTok{reg2), }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & OLS & Tobit\\
+\midrule
+(Intercept) & \num{6.504}*** & \num{4.491}*\\
+ & (\num{0.896}) & (\num{2.203})\\
+Age & \num{0.028}** & \num{0.080}***\\
+ & (\num{0.010}) & (\num{0.024})\\
+Coupon & \num{0.159} & \num{0.454}\\
+ & (\num{0.311}) & (\num{0.769})\\
+Income per 10k & \num{-0.828}*** & \num{-2.161}***\\
+ & (\num{0.141}) & (\num{0.355})\\
+\midrule
+Num.Obs. & \num{1567} & \num{1567}\\
+R2 & \num{0.026} & \\
+R2 Adj. & \num{0.024} & \\
+AIC & \num{9906.6} & \num{5654.8}\\
+BIC & \num{9933.4} & \num{5681.6}\\
+Log.Lik. & \num{-4948.287} & \\
+F & \num{13.959} & \\
+RMSE & \num{5.69} & \num{9.24}\\
+\bottomrule
+\multicolumn{3}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  What are the differences between c and a?
+\end{enumerate}
+
+\#Ans: Both the OLS and Tobit models indicate that Age and Income per
+10k significantly affect the dependent variable. Age has a positive
+effect, meaning as age increases, the dependent variable also increases.
+Conversely, Income per 10k has a negative effect, implying that as
+income increases, the dependent variable decreases. The variable Coupon
+does not significantly affect the dependent variable in either model.
+The Tobit model shows a stronger relationship between the dependent
+variable and the independent variables Age and Income per 10k compared
+to the OLS model.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  What is the marginal effect of coupons?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages(\textquotesingle{}censReg\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(censReg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'censReg' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: maxLik
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'maxLik' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: miscTools
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'miscTools' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Please cite the 'maxLik' package as:
+## Henningsen, Arne and Toomet, Ott (2011). maxLik: A package for maximum likelihood estimation in R. Computational Statistics 26(3), 443-458. DOI 10.1007/s00180-010-0217-1.
+## 
+## If you have questions, suggestions, or comments regarding the 'maxLik' package, please use a forum or 'tracker' at maxLik's R-Forge site:
+## https://r-forge.r-project.org/projects/maxlik/
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Please cite the 'censReg' package as:
+## Henningsen, Arne (2017). censReg: Censored Regression (Tobit) Models. R package version 0.5. http://CRAN.R-Project.org/package=censReg.
+## 
+## If you have questions, suggestions, or comments regarding the 'censReg' package, please use a forum or 'tracker' at the R-Forge site of the 'sampleSelection' project:
+## https://r-forge.r-project.org/projects/sampleselection/
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estResult }\OtherTok{\textless{}{-}} \FunctionTok{censReg}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Streaming Hours}\StringTok{\textasciigrave{}} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Age}\SpecialCharTok{+}\NormalTok{Coupon}\SpecialCharTok{+} \StringTok{\textasciigrave{}}\AttributeTok{Income per 10k}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{data =}\NormalTok{ stream)}
+\CommentTok{\#knitr::kable(margEff(estResult))}
+
+
+\NormalTok{marginal\_effects }\OtherTok{\textless{}{-}} \FunctionTok{margEff}\NormalTok{(estResult)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(marginal\_effects, }\AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Variables"}\NormalTok{, }\StringTok{"Effect Sizes"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Variables & Effect Sizes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Age & 0.02981923 \\
+Coupon & 0.16826383 \\
+\texttt{Income\ per\ 10k} & -0.80122102 \\
+\end{longtable}
+
+Question 2
+
+In this analysis, you will use customer level data on travel
+expenditures. You will observe the following variables. Use the dataset
+``tour\_data.RData'' for this question.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Variables & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+income & Household income \\
+education & Education level of the household head \\
+health & Health status index of the household members \\
+tripweather & Weather quality in the destination of the trip \\
+participation & Dummy variable for tourism participation \\
+expenditure & Total household tourism expenditure \\
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Estimate a regression model of expenditures on income, education, and
+  tripweather.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"\textasciitilde{}/UofL/MSBA/Advanced Tools/ICA4/tour\_data.RData"}\NormalTok{)}
+\FunctionTok{names}\NormalTok{(tourexp)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Income"}\NormalTok{, }\StringTok{"Education"}\NormalTok{, }\StringTok{"Health"}\NormalTok{, }\StringTok{"Trip weather"}\NormalTok{, }\StringTok{"Participation"}\NormalTok{, }\StringTok{"Expenditures"}\NormalTok{)}
+
+\NormalTok{reg3}\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Expenditures }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Income}\SpecialCharTok{+}\NormalTok{Education}\SpecialCharTok{+}\StringTok{\textasciigrave{}}\AttributeTok{Trip weather}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{data=}\NormalTok{tourexp)}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Linear Model"}\OtherTok{=}\NormalTok{reg3),}\AttributeTok{stars=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & Linear Model\\
+\midrule
+(Intercept) & \num{-19731.179}***\\
+ & (\num{752.760})\\
+Income & \num{71.948}***\\
+ & (\num{3.171})\\
+Education & \num{788.164}***\\
+ & (\num{35.894})\\
+Trip weather & \num{449.997}***\\
+ & (\num{32.656})\\
+\midrule
+Num.Obs. & \num{500}\\
+R2 & \num{0.651}\\
+R2 Adj. & \num{0.649}\\
+AIC & \num{8724.2}\\
+BIC & \num{8745.3}\\
+Log.Lik. & \num{-4357.103}\\
+F & \num{308.426}\\
+RMSE & \num{1473.31}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Estimate a probit model on participation using income, education, and
+  health
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg4}\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Participation }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Income}\SpecialCharTok{+}\NormalTok{Education}\SpecialCharTok{+}\NormalTok{Health, }\AttributeTok{data=}\NormalTok{tourexp, }\AttributeTok{family =} \FunctionTok{binomial}\NormalTok{(}\AttributeTok{link =} \StringTok{"probit"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Probit"}\OtherTok{=}\NormalTok{reg4), }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lc}
+\toprule
+  & Probit\\
+\midrule
+(Intercept) & \num{-16.545}***\\
+ & (\num{0.967})\\
+Income & \num{0.051}***\\
+ & (\num{0.003})\\
+Education & \num{0.524}***\\
+ & (\num{0.038})\\
+Health & \num{0.521}***\\
+ & (\num{0.037})\\
+\midrule
+Num.Obs. & \num{1000}\\
+AIC & \num{672.4}\\
+BIC & \num{692.0}\\
+Log.Lik. & \num{-332.179}\\
+F & \num{98.925}\\
+RMSE & \num{0.33}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Estimate a sample selection model of tourism expenditures.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(sampleSelection)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'sampleSelection' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg5}\OtherTok{\textless{}{-}} \FunctionTok{heckit}\NormalTok{(Participation }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Income}\SpecialCharTok{+}\NormalTok{Education}\SpecialCharTok{+}\NormalTok{Health, Expenditures }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Income}\SpecialCharTok{+}\NormalTok{Education}\SpecialCharTok{+}\StringTok{\textasciigrave{}}\AttributeTok{Trip weather}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{data=}\NormalTok{tourexp, }\AttributeTok{method =} \StringTok{"2step"}\NormalTok{)}
+
+\NormalTok{cr\_reg\_4 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"XS(Intercept)"}\OtherTok{=}\StringTok{"(Intercept)"}\NormalTok{, }\StringTok{"XSIncome"} \OtherTok{=} \StringTok{"Income"}\NormalTok{, }\StringTok{"XSEducation"}\OtherTok{=}\StringTok{"Education"}\NormalTok{, }\StringTok{"XSHealth"} \OtherTok{=} \StringTok{"Health"}\NormalTok{, }\StringTok{"XO(Intercept)"}\OtherTok{=}\StringTok{"(Intercept)"}\NormalTok{, }\StringTok{"XOIncome"} \OtherTok{=} \StringTok{"Income"}\NormalTok{, }\StringTok{"XOEducation"}\OtherTok{=}\StringTok{"Education"}\NormalTok{, }\StringTok{"XOTrip weather"}\OtherTok{=} \StringTok{"Trip weather"}\NormalTok{, }\StringTok{"imrData$IMR1"}\OtherTok{=}\StringTok{"Inverse Mills Ratio"}\NormalTok{)}
+
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Probit Model"}\OtherTok{=}\NormalTok{reg5}\SpecialCharTok{$}\NormalTok{probit, }\StringTok{"Linear Model"}\OtherTok{=}\NormalTok{reg5}\SpecialCharTok{$}\NormalTok{lm), }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{coef\_rename =}\NormalTok{ cr\_reg\_4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & Probit Model & Linear Model\\
+\midrule
+(Intercept) & \num{-16.545}*** & \num{-22092.620}***\\
+ & (\num{0.961}) & (\num{916.811})\\
+Income & \num{0.051}*** & \num{80.666}***\\
+ & (\num{0.004}) & (\num{3.702})\\
+Education & \num{0.524}*** & \num{873.198}***\\
+ & (\num{0.037}) & (\num{40.301})\\
+Health & \num{0.521}*** & \\
+ & (\num{0.037}) & \\
+Trip weather &  & \num{451.601}***\\
+ &  & (\num{32.081})\\
+Inverse Mills Ratio &  & \num{796.628}***\\
+ &  & (\num{182.830})\\
+\midrule
+Num.Obs. &  & \num{500}\\
+R2 &  & \num{0.851}\\
+R2 Adj. &  & \num{0.849}\\
+AIC & \num{672.4} & \num{8707.4}\\
+BIC & \num{692.0} & \num{8732.7}\\
+Log.Lik. &  & \num{-4347.693}\\
+RMSE & \num{0.33} & \num{1445.84}\\
+\bottomrule
+\multicolumn{3}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#something weird is happening}
+\CommentTok{\#reg5$ 1=Probit, 2=Outcome, fix the names}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Compare your estimates in a) and c). Do you detect sample selection
+  bias? How do you know?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# invMillsRatio, We do have sample selection bias because is not 0. The sample was too ???. Check the slide with the alpha.}
+\CommentTok{\# The Inverse Mills Ratio is statistically significant, suggesting that there is sample selection bias in the data (Positive Bias). The R{-}squared value indicates that approximately 85.1\% of the variability in the dependent variable can be explained by the independent variables in the model. The adjusted R{-}squared is 0.849, which adjusts the R{-}squared value based on the number of predictors in the model. These are high values, suggesting a good fit of the model to the data. To conclude, there appears to be sample selection bias in the data. However, the models seem to fit the data well based on the R{-}squared, adjusted R{-}squared, AIC, BIC, and RMSE values. }
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

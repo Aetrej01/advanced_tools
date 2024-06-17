@@ -1,0 +1,845 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{siunitx}
+
+  \newcolumntype{d}{S[
+    input-open-uncertainty=,
+    input-close-uncertainty=,
+    parse-numbers = false,
+    table-align-text-pre=false,
+    table-align-text-post=false
+  ]}
+  
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={ICA 2},
+  pdfauthor={Alice Trejo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{ICA 2}
+\author{Alice Trejo}
+\date{MSBA Data Analytics III}
+
+\begin{document}
+\maketitle
+
+\hypertarget{learning-objectives}{%
+\subsection{Learning Objectives}\label{learning-objectives}}
+
+In this assignment, you will practice your T-Test and R programming
+skills. You will use a fixed effects model and perform a
+difference-in-differences analysis. Please answer the questions in a R
+markdown file and ``Knit'' the file so that I can see your analysis.
+
+\hypertarget{experiments}{%
+\subsection{Experiments}\label{experiments}}
+
+Reanalysis of Gerber, Green and Larimer (2008) `Why do large numbers of
+people vote, despite the fact that, as Hegel once observed, ``the
+casting of a single vote is of no significance where there is a
+multitude of electors''?'
+
+This is the question that drives the experimental analysis of Gerber,
+Green and Larimer (2008). If it is irrational to vote because the costs
+of doings so (time spent informing oneself, time spent getting to the
+polling station, etc) are clearly greater than the gains to be made from
+voting (the probability that any individual voter will be decisive in an
+election are vanishingly small), then why do we observe millions of
+people voting in elections? One commonly proposed answer is that voters
+may have some sense of civic duty which drives them to the polls.
+Gerber, Green and Larimer investigate this idea empirically by priming
+voters to think about civic duty while also varying the amount of social
+pressure voters are subject to. In a field experiment in advance of the
+2006 primary election in Michigan, nearly 350,000 voters were assigned
+at random to one of four treatment groups, where voters received
+mailouts which encouraged them to vote, or a control group where voters
+received no mailout. The treatment and control conditions were as
+follows:
+
+\begin{verbatim}
+Treatment 1 (“Civic duty”): Voters receive mailout reminding them that voting is a civic duty
+Treatment 2 (“Hawthorne”): Voters receive mailout telling them that researchers would be studying their turnout based on public records
+Treatment 3 (“Self”): Voters receive mailout displaying the record of turnout for their household in prior elections.
+Treatment 4 (“Neighbors”): Voters receive mailout displaying the record of turnout for their household and their neighbours’ households in prior elections.
+Control: Voters receive no mailout.
+\end{verbatim}
+
+Load the replication data for Gerber, Green and Larimer (2008). This
+data is stored in a .Rdata format, which is the main way to save data in
+R. Therefore you will not be able to use read.csv but instead should use
+the function load.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# You will need to change the file location for the code to work.}
+\FunctionTok{load}\NormalTok{(}\StringTok{"gerber\_green\_larimer.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Once you have loaded the data, familiarise yourself with the the gerber
+object which should be in your current envionment. Use the str and
+summary functions to get an idea of what is in the data. There are 5
+variables in this data.frame: Variable name Description
+
+\begin{itemize}
+\tightlist
+\item
+  voted: Indicator for whether the voter voted in the 2006 election (1)
+  or did not vote (0)
+\item
+  treatment: Factor variable indicating which treatment arm (or control
+  group) the voter was allocated to
+\item
+  sex: Sex of the respondent
+\item
+  yob: Year of birth of the respondent
+\item
+  p2004: Indicator for whether the voter voted in the 2004 election
+  (Yes) or not (No)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate the turnout rates, ``voted'', for each of the experimental
+  groups (4 treatments, 1 control). Calculate the number of individuals
+  allocated to each group. Recreate table 2 on p.~38 of the paper.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Version 2.0.0 of `modelsummary`, to be released soon, will introduce a
+##   breaking change: The default table-drawing package will be `tinytable`
+##   instead of `kableExtra`. All currently supported table-drawing packages
+##   will continue to be supported for the foreseeable future, including
+##   `kableExtra`, `gt`, `huxtable`, `flextable, and `DT`.
+##   
+##   You can always call the `config_modelsummary()` function to change the
+##   default table-drawing package in persistent fashion. To try `tinytable`
+##   now:
+##   
+##   config_modelsummary(factory_default = 'tinytable')
+##   
+##   To set the default back to `kableExtra`:
+##   
+##   config_modelsummary(factory_default = 'kableExtra')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{datasummary}\NormalTok{(voted }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Mean}\SpecialCharTok{*}\FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data=}\NormalTok{gerber)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrrr}
+\toprule
+  & Control & Civic Duty & Hawthorne & Self & Neighbors\\
+\midrule
+voted & \num{0.30} & \num{0.31} & \num{0.32} & \num{0.35} & \num{0.38}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Use the following code to create three new variables in the
+  data.frame. First, a variable that is equal to 1 if a respondent is
+  female, and 0 otherwise. Second, a variable that measures the age of
+  each voter in years at the time of the experiment (which was conducted
+  in 2006). Third, a variable that is equal to 1 if the voter voted in
+  the November 2004 Miderm election.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Female dummy variable}
+\NormalTok{gerber}\SpecialCharTok{$}\NormalTok{female }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(gerber}\SpecialCharTok{$}\NormalTok{sex }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\DocumentationTok{\#\# Age variable}
+\NormalTok{gerber}\SpecialCharTok{$}\NormalTok{age }\OtherTok{\textless{}{-}} \DecValTok{2006} \SpecialCharTok{{-}}\NormalTok{ gerber}\SpecialCharTok{$}\NormalTok{yob}
+
+\DocumentationTok{\#\# 2004 variable}
+\NormalTok{gerber}\SpecialCharTok{$}\NormalTok{turnout04 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(gerber}\SpecialCharTok{$}\NormalTok{p2004 }\SpecialCharTok{==} \StringTok{"Yes"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Using these variables, conduct balance checks to establish whether
+  there are potentially confounding differences between treatment and
+  control groups. You do this by using the variables female, age, and
+  turnout04 as depedent variables. Use just the factor variable of
+  treatment as your explanatory variable. Can you conclude from the
+  results that randomization worked? How do you know?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exp1 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(female }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber)}
+\NormalTok{exp2 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(age }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber)}
+\NormalTok{exp3 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(turnout04 }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber)}
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Female"}\OtherTok{=}\NormalTok{exp1,}\StringTok{"Age"}\OtherTok{=}\NormalTok{exp2,}\StringTok{"Turnout"}\OtherTok{=}\NormalTok{exp3),}\AttributeTok{coef\_rename =}\NormalTok{ coef\_rename, }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lccc}
+\toprule
+  & Female & Age & Turnout\\
+\midrule
+(Intercept) & \num{0.499}*** & \num{49.814}*** & \num{0.400}***\\
+ & (\num{0.001}) & (\num{0.033}) & (\num{0.001})\\
+Civic Duty & \num{0.001} & \num{-0.155}+ & \num{-0.001}\\
+ & (\num{0.003}) & (\num{0.081}) & \vphantom{3} (\num{0.003})\\
+Hawthorne & \num{0.000} & \num{-0.109} & \num{0.003}\\
+ & (\num{0.003}) & (\num{0.081}) & \vphantom{2} (\num{0.003})\\
+Self & \num{0.001} & \num{-0.021} & \num{0.002}\\
+ & (\num{0.003}) & (\num{0.081}) & \vphantom{1} (\num{0.003})\\
+Neighbors & \num{0.001} & \num{0.039} & \num{0.006}*\\
+ & (\num{0.003}) & (\num{0.081}) & (\num{0.003})\\
+\midrule
+Num.Obs. & \num{344084} & \num{344084} & \num{344084}\\
+R2 & \num{0.000} & \num{0.000} & \num{0.000}\\
+R2 Adj. & \num{0.000} & \num{0.000} & \num{0.000}\\
+AIC & \num{499477.3} & \num{2814316.6} & \num{485852.4}\\
+BIC & \num{499541.8} & \num{2814381.1} & \num{485916.9}\\
+Log.Lik. & \num{-249732.671} & \num{-1407152.317} & \num{-242920.207}\\
+RMSE & \num{0.50} & \num{14.45} & \num{0.49}\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+Answer: We can conclude from the results that randomization worked
+because there are not relevant coefficients and R2 is 0 in this case.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Estimate the average treatment effects of the different treatment arms
+  whilst controlling for the variables you created for the question
+  above. How do these estimates differ from regression estimates of the
+  treatment effects only (i.e.~without controlling for other factors)?
+  Why?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exp4 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(voted }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber)}
+\CommentTok{\# Now use the same equation above but add female, age, and turnout04}
+\NormalTok{exp5 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(voted }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment)}\SpecialCharTok{+}\NormalTok{female}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{turnout04, }\AttributeTok{data=}\NormalTok{gerber)}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(exp4,exp5),}\AttributeTok{coef\_rename =}\NormalTok{ coef\_rename, }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & (1) & (2)\\
+\midrule
+(Intercept) & \num{0.297}*** & \num{0.044}***\\
+ & (\num{0.001}) & (\num{0.003})\\
+Civic Duty & \num{0.018}*** & \num{0.019}***\\
+ & (\num{0.003}) & \vphantom{3} (\num{0.003})\\
+Hawthorne & \num{0.026}*** & \num{0.026}***\\
+ & (\num{0.003}) & \vphantom{2} (\num{0.003})\\
+Self & \num{0.049}*** & \num{0.048}***\\
+ & (\num{0.003}) & \vphantom{1} (\num{0.003})\\
+Neighbors & \num{0.081}*** & \num{0.080}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+Female &  & \num{-0.008}***\\
+ &  & \vphantom{1} (\num{0.002})\\
+Age &  & \num{0.004}***\\
+ &  & (\num{0.000})\\
+Turnout04 &  & \num{0.148}***\\
+ &  & (\num{0.002})\\
+\midrule
+Num.Obs. & \num{344084} & \num{344084}\\
+R2 & \num{0.003} & \num{0.045}\\
+R2 Adj. & \num{0.003} & \num{0.045}\\
+AIC & \num{448179.9} & \num{433501.1}\\
+BIC & \num{448244.4} & \num{433597.9}\\
+Log.Lik. & \num{-224083.935} & \num{-216741.564}\\
+RMSE & \num{0.46} & \num{0.45}\\
+\bottomrule
+\multicolumn{3}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+Answer: The coefficients are almost the same or the same, because the
+randomization worked. If we add truly independent variables it shouldn't
+change our coefficients.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Estimate the treatment effects separately for men and women. Do you
+  note any differences in the impact of the treatment among these
+  subgroups? Answer: There are not big differences.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# modify the equation below for just men}
+\NormalTok{exp6 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(voted }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber[gerber}\SpecialCharTok{$}\NormalTok{female}\SpecialCharTok{==}\DecValTok{0}\NormalTok{, ])}
+\CommentTok{\# modify the equation below for just women}
+\NormalTok{exp7 }\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(voted }\SpecialCharTok{\textasciitilde{}} \FunctionTok{factor}\NormalTok{(treatment), }\AttributeTok{data =}\NormalTok{gerber[gerber}\SpecialCharTok{$}\NormalTok{female}\SpecialCharTok{==}\DecValTok{1}\NormalTok{, ])}
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Men"}\OtherTok{=}\NormalTok{exp6,}\StringTok{"Women"}\OtherTok{=}\NormalTok{exp7),}\AttributeTok{coef\_rename =}\NormalTok{ coef\_rename, }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & Men & Women\\
+\midrule
+(Intercept) & \num{0.303}*** & \num{0.290}***\\
+ & (\num{0.002}) & (\num{0.001})\\
+Civic Duty & \num{0.020}*** & \num{0.016}***\\
+ & (\num{0.004}) & \vphantom{3} (\num{0.004})\\
+Hawthorne & \num{0.025}*** & \num{0.027}***\\
+ & (\num{0.004}) & \vphantom{2} (\num{0.004})\\
+Self & \num{0.046}*** & \num{0.051}***\\
+ & (\num{0.004}) & \vphantom{1} (\num{0.004})\\
+Neighbors & \num{0.082}*** & \num{0.081}***\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+Num.Obs. & \num{172289} & \num{171795}\\
+R2 & \num{0.003} & \num{0.004}\\
+R2 Adj. & \num{0.003} & \num{0.003}\\
+AIC & \num{226155.0} & \num{221958.4}\\
+BIC & \num{226215.3} & \num{222018.8}\\
+Log.Lik. & \num{-113071.476} & \num{-110973.214}\\
+RMSE & \num{0.47} & \num{0.46}\\
+\bottomrule
+\multicolumn{3}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+Difference-in-Differences: Replication Exercise from the notes
+
+The data are about the expansion of the Earned Income Tax Credit. The
+sample only contains single women. This legislation is aimed at
+providing a tax break for low income individuals. For some background on
+the subject, see
+
+Eissa, Nada, and Jeffrey B. Liebman. 1996. Labor Supply Responses to the
+Earned Income Tax Credit. Quarterly Journal of Economics. 111(2):
+605-637.
+
+\textbf{Big Hint: Most of the code you need is in the notes}
+
+Variable Names and Definitions
+
+state: Factor variable containg the state's FIPS code. year: Calendar
+Year urate: unemployment rate for the state and year children: number of
+children in the household nonwhite: the person identifies as non-White
+finc: Family household income earn: Earned income unearn: unearned
+income age: Age of the mother in years ed: Years of schooling work:
+Indicator variable equal to 1 if the person is currently working
+
+The homework questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Provide Descriptive Statistics for the data. Format nicely, not just R
+  printout. Here is an example below. I have already provided the code
+  to read in the data below. You need to create the data summary table.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(foreign)}
+\NormalTok{eitc}\OtherTok{\textless{}{-}}\FunctionTok{read.dta}\NormalTok{(}\StringTok{"https://github.com/CausalReinforcer/Stata/raw/master/eitc.dta"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(modelsummary)}
+\CommentTok{\# the data mtcars is just an example. You need to replace it with eitc}
+\FunctionTok{datasummary}\NormalTok{((}\StringTok{\textasciigrave{}}\AttributeTok{Unemployment Rate}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{urate)}\SpecialCharTok{+}\NormalTok{children}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Non{-}white}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{nonwhite)}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Family Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{finc)}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Earned Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{earn)}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Years of Education}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ed)}\SpecialCharTok{+}\NormalTok{work}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Unearned Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{unearn) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Mean }\SpecialCharTok{+}\NormalTok{ SD }\SpecialCharTok{+}\NormalTok{ Min }\SpecialCharTok{+}\NormalTok{ Max,}
+            \AttributeTok{data =}\NormalTok{ eitc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+  & Mean & SD & Min & Max\\
+\midrule
+Unemployment Rate & \num{6.76} & \num{1.46} & \num{2.60} & \num{11.40}\\
+children & \num{1.19} & \num{1.38} & \num{0.00} & \num{9.00}\\
+Non-white & \num{0.60} & \num{0.49} & \num{0.00} & \num{1.00}\\
+Family Income & \num{15255.32} & \num{19444.25} & \num{0.00} & \num{575616.82}\\
+Earned Income & \num{10432.48} & \num{18200.76} & \num{0.00} & \num{537880.61}\\
+age & \num{35.21} & \num{10.16} & \num{20.00} & \num{54.00}\\
+Years of Education & \num{8.81} & \num{2.64} & \num{0.00} & \num{11.00}\\
+work & \num{0.51} & \num{0.50} & \num{0.00} & \num{1.00}\\
+Unearned Income & \num{4.82} & \num{7.12} & \num{0.00} & \num{134.06}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculate the sample means of all variables for (a) single women with
+  no children, (b) single women with 1 child, and (c) single women with
+  2+ children. \textbf{Hint: Use the tidyverse to make this table. You
+  can either filter the data or use dplyr to construct groups.You can
+  even use datasummary to do this step. Below is one example}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Make the appropriate changes (i.e. dataframe name and correct factor variable)}
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{nochild}\OtherTok{\textless{}{-}}\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{children}
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{nochild[eitc}\SpecialCharTok{$}\NormalTok{children}\SpecialCharTok{\textgreater{}}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\DecValTok{2}
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{nochild }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{nochild, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"No Children"}\NormalTok{, }\StringTok{"1 Child"}\NormalTok{, }\StringTok{"2 or more Children"}\NormalTok{))}
+\FunctionTok{datasummary}\NormalTok{((}\StringTok{\textasciigrave{}}\AttributeTok{Unemployment Rate}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{urate)}\SpecialCharTok{+}\NormalTok{children}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Non{-}white}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{nonwhite)}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Family Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{finc)}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Earned Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{earn)}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Years of Education}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{ed)}\SpecialCharTok{+}\NormalTok{work}\SpecialCharTok{+}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Unearned Income}\StringTok{\textasciigrave{}}\OtherTok{=}\NormalTok{unearn) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ mean }\SpecialCharTok{*} \FunctionTok{factor}\NormalTok{(nochild),}\AttributeTok{data =}\NormalTok{ eitc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  & No Children & 1 Child & 2 or more Children\\
+\midrule
+Unemployment Rate & \num{6.66} & \num{6.80} & \num{6.86}\\
+children & \num{0.00} & \num{1.00} & \num{2.80}\\
+Non-white & \num{0.52} & \num{0.60} & \num{0.71}\\
+Family Income & \num{18559.86} & \num{13941.57} & \num{11985.30}\\
+Earned Income & \num{13760.26} & \num{9928.28} & \num{6613.55}\\
+age & \num{38.50} & \num{33.76} & \num{32.05}\\
+Years of Education & \num{8.55} & \num{8.99} & \num{9.01}\\
+work & \num{0.57} & \num{0.54} & \num{0.42}\\
+Unearned Income & \num{4.80} & \num{4.01} & \num{5.37}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Construct a variable for the ``treatment'' called ANYKIDS. This
+  variable should equal 1 if they have any children and zero otherwise.
+  Create a second variable to indicate after the expansion (called
+  POST93-should be 1 for 1994 and later).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# the EITC went into effect in the year 1994}
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{post93 }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{\textgreater{}=} \DecValTok{1994}\NormalTok{)}
+\CommentTok{\# The EITC only affects women with at least one child, so the}
+\CommentTok{\# treatment group will be all women with children.}
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{anykids }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{children }\SpecialCharTok{\textgreater{}=} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Create a graph which plots mean annual employment rates by year
+  (1991-1996) for single women with children (treatment) and without
+  children (control). \textbf{Hint: you should have two lines on the
+  same graph.} I would suggest to use ggplot to make this plot. Here is
+  some sample code. The variable ``work'' is your dependent variable.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{minfo }\OtherTok{=} \FunctionTok{aggregate}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{work, }\FunctionTok{list}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{year,eitc}\SpecialCharTok{$}\NormalTok{anykids }\SpecialCharTok{==} \DecValTok{1}\NormalTok{), mean)}
+\CommentTok{\# rename column headings (variables)}
+\FunctionTok{names}\NormalTok{(minfo) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"YR"}\NormalTok{,}\StringTok{"Treatment"}\NormalTok{,}\StringTok{"LFPR"}\NormalTok{)}
+\CommentTok{\# Attach a new column with labels}
+\NormalTok{minfo}\SpecialCharTok{$}\NormalTok{Group[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{] }\OtherTok{=} \StringTok{"Single women, no children"}
+\NormalTok{minfo}\SpecialCharTok{$}\NormalTok{Group[}\DecValTok{7}\SpecialCharTok{:}\DecValTok{12}\NormalTok{] }\OtherTok{=} \StringTok{"Single women, children"}
+\CommentTok{\#minfo}
+\FunctionTok{require}\NormalTok{(ggplot2)    }\CommentTok{\#package for creating nice plots}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qplot}\NormalTok{(YR, LFPR, }\AttributeTok{data=}\NormalTok{minfo, }\AttributeTok{geom=}\FunctionTok{c}\NormalTok{(}\StringTok{"point"}\NormalTok{,}\StringTok{"line"}\NormalTok{), }\AttributeTok{colour=}\NormalTok{Group,}
+\AttributeTok{xlab=}\StringTok{"Year"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Labor Force Participation Rate"}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{1994}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\includegraphics{ICA2_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Do the trends between the two groups appear to be parallel? Why is
+  this important? Answer: Yes, they appear to be parallel until the year
+  1994. This is important because it indicates that these both groups
+  (Treatment and Control) are being influenced similarly by the overall
+  economic conditions, society norms, or employment policies in place
+  during that time (1991-1994).
+\item
+  Calculate the unconditional difference-in-difference estimates of the
+  effect of the 1993 EITC expansion on employment of single women.
+  \textbf{Hint: This means calculate the DID treatment effect by just
+  subtracting means (i.e.~no regression)}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute the four data points needed in the DID calculation:}
+\NormalTok{a }\OtherTok{=} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{subset}\NormalTok{(eitc, post93 }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ anykids }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\AttributeTok{select=}\NormalTok{work), mean)}
+\NormalTok{b }\OtherTok{=} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{subset}\NormalTok{(eitc, post93 }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ anykids }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\AttributeTok{select=}\NormalTok{work), mean)}
+\NormalTok{c }\OtherTok{=} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{subset}\NormalTok{(eitc, post93 }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ anykids }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\AttributeTok{select=}\NormalTok{work), mean)}
+\NormalTok{d }\OtherTok{=} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{subset}\NormalTok{(eitc, post93 }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{\&}\NormalTok{ anykids }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\AttributeTok{select=}\NormalTok{work), mean)}
+\CommentTok{\# Compute the effect of the EITC on the employment of women with children:}
+\NormalTok{(d}\SpecialCharTok{{-}}\NormalTok{c)}\SpecialCharTok{{-}}\NormalTok{(b}\SpecialCharTok{{-}}\NormalTok{a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       work 
+## 0.04687313
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Now run a regression to estimate the conditional
+  difference-in-difference estimate of the effect of the EITC. Use all
+  women with children as the treatment group. \textbf{Hint: your answers
+  for 6 and 7 should match.}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estimate a difference in difference regression. You should be using ANYKIDS and POST93 in your regression. Work is your dependent variable}
+
+\NormalTok{reg1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(work }\SpecialCharTok{\textasciitilde{}}\NormalTok{ post93}\SpecialCharTok{+}\NormalTok{anykids}\SpecialCharTok{+}\NormalTok{post93}\SpecialCharTok{*}\NormalTok{anykids, }\AttributeTok{data =}\NormalTok{ eitc)}
+\FunctionTok{summary}\NormalTok{(reg1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = work ~ post93 + anykids + post93 * anykids, data = eitc)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5755 -0.4908  0.4245  0.5092  0.5540 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     0.575460   0.008845  65.060  < 2e-16 ***
+## post93         -0.002074   0.012931  -0.160  0.87261    
+## anykids        -0.129498   0.011676 -11.091  < 2e-16 ***
+## post93:anykids  0.046873   0.017158   2.732  0.00631 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4967 on 13742 degrees of freedom
+## Multiple R-squared:  0.0126, Adjusted R-squared:  0.01238 
+## F-statistic: 58.45 on 3 and 13742 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Re-estimate this model including demographic characteristics as well
+  as state and year fixed effect. Use the variable nonwhite, age, ed,
+  and unearn as demographics.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages(\textquotesingle{}lfe\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(lfe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: Matrix
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{interact }\OtherTok{\textless{}{-}}\NormalTok{ eitc}\SpecialCharTok{$}\NormalTok{post93}\SpecialCharTok{*}\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{anykids}
+\NormalTok{reg2 }\OtherTok{\textless{}{-}} \FunctionTok{felm}\NormalTok{(work }\SpecialCharTok{\textasciitilde{}}\NormalTok{ anykids}\SpecialCharTok{+}\NormalTok{interact}\SpecialCharTok{+}\NormalTok{nonwhite}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{ed}\SpecialCharTok{+}\NormalTok{unearn}\SpecialCharTok{|}\NormalTok{state}\SpecialCharTok{+}\NormalTok{year, }\AttributeTok{data=}\NormalTok{eitc)}
+\FunctionTok{summary}\NormalTok{(reg2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+##    felm(formula = work ~ anykids + interact + nonwhite + age + ed +      unearn | state + year, data = eitc) 
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.9011 -0.4596  0.1867  0.4269  2.4472 
+## 
+## Coefficients:
+##            Estimate Std. Error t value Pr(>|t|)    
+## anykids  -0.1060901  0.0114251  -9.286  < 2e-16 ***
+## interact  0.0526466  0.0163114   3.228  0.00125 ** 
+## nonwhite -0.0806300  0.0095755  -8.420  < 2e-16 ***
+## age       0.0033024  0.0004217   7.830 5.23e-15 ***
+## ed        0.0155543  0.0015967   9.742  < 2e-16 ***
+## unearn   -0.0174273  0.0005736 -30.382  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4711 on 13684 degrees of freedom
+## Multiple R-squared(full model): 0.1156   Adjusted R-squared: 0.1116 
+## Multiple R-squared(proj model): 0.08644   Adjusted R-squared: 0.08237 
+## F-statistic(full model):29.31 on 61 and 13684 DF, p-value: < 2.2e-16 
+## F-statistic(proj model): 215.8 on 6 and 13684 DF, p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Explain why you can't use finc, earn, and uearn in the same
+  regression.
+\end{enumerate}
+
+Answer: You can't use finc, earn, and uearn variable in the same
+regression, because you get perfect multicolinearity.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  Estimate a ``placebo'' treatment model. Take data from only the
+  pre-reform period. Use the same treatment and control groups.
+  Introduce a placebo policy that begins in 1992 instead of 1994 (so
+  1992 and 1993 both have this fake policy).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eitc}\SpecialCharTok{$}\NormalTok{post91 }\OtherTok{=} \FunctionTok{as.numeric}\NormalTok{(eitc}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{\textgreater{}=} \DecValTok{1992}\NormalTok{)}
+
+\NormalTok{reg3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(work }\SpecialCharTok{\textasciitilde{}}\NormalTok{ post91}\SpecialCharTok{*}\NormalTok{anykids, }\AttributeTok{data =}\NormalTok{ eitc[eitc}\SpecialCharTok{$}\NormalTok{year }\SpecialCharTok{\textless{}}\DecValTok{1994}\NormalTok{, ])}
+
+\NormalTok{cr\_reg3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"post93"} \OtherTok{=} \StringTok{"Post 93"}\NormalTok{, }\StringTok{"anykids"} \OtherTok{=} \StringTok{"Any Kids"}\NormalTok{,}\StringTok{"post93:anykids"}\OtherTok{=}\StringTok{"Post93: Any kids"}\NormalTok{, }\StringTok{"interact"}\OtherTok{=}\StringTok{"Interaction"}\NormalTok{, }\StringTok{"nonwhite"} \OtherTok{=} \StringTok{"Non{-}White"}\NormalTok{, }\StringTok{"age"} \OtherTok{=} \StringTok{"Age"}\NormalTok{, }\StringTok{"ed"} \OtherTok{=} \StringTok{"Years of Education"}\NormalTok{, }\StringTok{"unearn"} \OtherTok{=} \StringTok{"Unearned Income"}\NormalTok{,}\StringTok{"post91"} \OtherTok{=} \StringTok{"Post 91"}\NormalTok{,}\StringTok{"post91:anykids"}\OtherTok{=}\StringTok{"Post91: Any kids"}\NormalTok{)}
+  
+\FunctionTok{modelsummary}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"Diff{-}in{-}diff"}\OtherTok{=}\NormalTok{reg1,}\StringTok{"Re{-}estimate"}\OtherTok{=}\NormalTok{reg2,}\StringTok{"Placebo"}\OtherTok{=}\NormalTok{reg3), }\AttributeTok{vcov =} \FunctionTok{c}\NormalTok{(}\StringTok{"robust"}\NormalTok{,}\StringTok{"iid"}\NormalTok{,}\StringTok{"robust"}\NormalTok{), }\AttributeTok{stars =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{coef\_rename =}\NormalTok{ cr\_reg3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: When the `vcov` argument is set to "iid", "classical", or "constant",
+##   `modelsummary` extracts the default variance-covariance matrix from the
+##   model object. For objects of class `felm`, the default vcov is not
+##   always IID. Please make sure that the standard error label matches the
+##   numeric results in the table. Note that the `vcov` argument accepts a
+##   named list for users who want to customize the standard error labels in
+##   their regression tables.
+\end{verbatim}
+
+\begin{table}
+\centering
+\begin{tabular}[t]{lccc}
+\toprule
+  & Diff-in-diff & Re-estimate & Placebo\\
+\midrule
+(Intercept) & \num{0.575}*** &  & \num{0.583}***\\
+ & (\num{0.009}) &  & (\num{0.015})\\
+Post 93 & \num{-0.002} &  & \\
+ & (\num{0.013}) &  & \\
+Any Kids & \num{-0.129}*** & \num{-0.106}*** & \num{-0.123}***\\
+ & (\num{0.012}) & (\num{0.011}) & (\num{0.020})\\
+Post93: Any kids & \num{0.047}** &  & \\
+ & (\num{0.017}) &  & \\
+Interaction &  & \num{0.053}** & \\
+ &  & (\num{0.016}) & \\
+Non-White &  & \num{-0.081}*** & \\
+ &  & (\num{0.010}) & \\
+Age &  & \num{0.003}*** & \\
+ &  & (\num{0.000}) & \\
+Years of Education &  & \num{0.016}*** & \\
+ &  & (\num{0.002}) & \\
+Unearned Income &  & \num{-0.017}*** & \\
+ &  & (\num{0.001}) & \\
+Post 91 &  &  & \num{-0.012}\\
+ &  &  & (\num{0.018})\\
+Post91: Any kids &  &  & \num{-0.010}\\
+ &  &  & (\num{0.024})\\
+\midrule
+Num.Obs. & \num{13746} & \num{13746} & \num{7401}\\
+R2 & \num{0.013} & \num{0.116} & \num{0.017}\\
+R2 Adj. & \num{0.012} & \num{0.112} & \num{0.016}\\
+AIC & \num{19779.8} & \num{18382.1} & \num{10628.4}\\
+BIC & \num{19817.5} & \num{18856.4} & \num{10663.0}\\
+Log.Lik. & \num{-9884.917} &  & \num{-5309.218}\\
+RMSE & \num{0.50} & \num{0.47} & \num{0.50}\\
+Std.Errors & HC3 & IID & HC3\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\end{document}

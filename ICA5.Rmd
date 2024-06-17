@@ -1,0 +1,126 @@
+---
+title: "ICA 5"
+author: "Alice Trejo"
+date: "2024-03-10"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+## Customer Churn
+
+In this assignment, you will estimate a survival analysis model on customer churn. In this dataset, you will find various characteristics about a set of phone company customers
+
+customerID: Customer ID number
+gender: Provides the stated gender of the customer
+SeniorCitizen: States if the person is a senior citizen
+Partner: Does the person have a partner
+Dependents: Does the person have dependents
+tenure: States how long the person has been with the Bank
+PhoneService: Do they have phone service
+MultipleLines: Do they have multiple lines
+InternetService: What type of Internet Service do they have (DSL, fiber optic, none)
+OnlineSecurity: Do they have online security?
+OnlineBackup: Do they have online backup?
+DeviceProtection: Do they have device protection?
+TechSupport: Did they use tech support?
+StreamingTV: Do they use the internet to stream TV?
+StreamingMovies: Do they use the internet to stream movies?
+Contract: What type of contract do they have (month-to-month, one-year, or two year)
+PaperlessBilling: Do they use paperless biling
+PaymentMethod: How do they pay for services
+MonthlyCharges: What is their monthly charge?
+TotalCharges: What is their total charge for the quarter?
+Churn: Did they leave the company
+
+
+1) Find the simple average of `tenure`. Explain why this simple average can be biased.
+```{r warning=FALSE,message=FALSE}
+library(readr)
+Churn <- read_csv("WA_Fn-UseC_-Telco-Customer-Churn.csv")
+```
+
+
+The average time a customer spends with the bank is `r round(mean(Churn$tenure),digits =2)`.
+ANS: The simple average of customer tenure can be misleading due to several biases. Survivorship bias can overestimate average tenure as long-term customers are more likely to appear in the data. Right censoring introduces uncertainty as we don’t know the total tenure of customers who haven’t churned by the time the data was collected. The average tenure can be skewed downwards if the company has been growing and acquiring more customers over time, leading to a larger number of customers with shorter tenures. Cohort effects can also influence average tenure, as customers who joined at different times may have different average tenures. These factors suggest that it’s often more informative to look at the distribution of tenure or to model churn directly using survival analysis techniques.
+
+2) Find the simple average of `tenure` by the following groups. Gender, SeniorCitizen, and Partner.
+```{r}
+
+library(knitr)
+#aggregate(Churn$tenure,by=list(Churn$gender,churn$SeniorCitizen,Churn$Partner),FUN=mean)
+tab1<-aggregate(Churn$tenure,by=list(Churn$gender,Churn$SeniorCitizen,Churn$Partner),FUN=mean)
+names(tab1)<-c("Gender", "Senior Citizen", "Partnered", "Mean Tenure")
+kable(tab1)
+
+#library(modelsummary)
+#datasummary(tenure~Mean*(gender), data=Churn)
+#datasummary(tenure~Mean*(SeniorCitizen), data=Churn)
+#datasummary(tenure~Mean*(gender)+Mean*(Partner), data = Churn)
+```
+
+3) Find the simple average of `tenure` and `MonthlyCharge` by `Contract` type.
+```{r}
+library(modelsummary)
+datasummary((`Tenure`=tenure)+(`Monthly Charges`=MonthlyCharges)~Mean*(Contract), data = Churn)
+```
+
+
+4) Estimate a Kaplan Meier survival model. Use gender and senior citizen as explanatory variables. Do these variables produce statistically different survival rates?
+```{r}
+library(survival)
+Churn$churn1 <- 0
+Churn$churn1[Churn$Churn=="Yes"]<-1
+survminer::ggsurvplot(
+    fit = survival::survfit(survival::Surv(tenure, churn1) ~ gender+SeniorCitizen, data = Churn), 
+    xlab = "Days",
+    ylab = "Overall survival probability",
+    legend.title = "Types of People",
+    conf.int = TRUE,
+    legend.labs = c("Female & Non Senior", "Female & Senior","Male & Non Senior","Male & Senior"),
+    break.x.by = 100, 
+    censor = FALSE)
+```
+Answer: It appears that the Female & Non Senior and Male & Non Senior groups have higher survival probabilities over time compared to the Female & Senior and Male & Senior groups. This suggests that being a senior citizen may be associated with lower survival rates, regardless of gender.
+
+5) Estimate a Kaplan Meier survival model that uses contract type as the explanatory variable. Do we see a difference between contract type?
+```{r}
+Churn$churn1 <- 0
+Churn$churn1[Churn$Churn=="Yes"]<-1
+survminer::ggsurvplot(
+    fit = survival::survfit(survival::Surv(tenure, churn1) ~ Contract, data = Churn), 
+    xlab = "Days",
+    ylab = "Overall survival probability",
+    legend.title = "Contract Type",
+    conf.int = TRUE,
+    legend.labs = c("Month to Month", "One Year","Two Year"),
+    break.x.by = 100, 
+    censor = FALSE)
+```
+Answer: Month to Month, It shows a steep drop, signifying a high probability of churn in a shorter period. One Year, It presents a moderate fall, indicating a churn rate that is lower than Month to Month contracts but higher than Two Year contracts. Two Year: It displays the most gradual decrease, suggesting the greatest retention rate among the three contract categories. In conclusion, the chart underscores the substantial influence of contract duration on the likelihood of churn, with Two Year contracts correlating with the smallest churn rate, followed by One Year contracts, and Month to Month contracts exhibiting the highest churn rate.
+
+
+6) Estimate a Cox proportional hazard model of `tenure`. Use the following variables as explanatory variables: gender, seniorcitizen, contract type, partner, dependents, type of internet access, do they have phone service, and do they use paperless billing.
+```{r}
+FIT <- survival::coxph(survival::Surv(tenure, churn1) ~ Contract + gender + SeniorCitizen + Partner + Dependents + InternetService + PhoneService + PaperlessBilling, data = Churn)
+
+name2_fit <- broom::tidy(FIT)
+colnames(name2_fit) <- c("Term", "Estimate", "Standard Error", "Statistic", "p value")
+name2_fit$Term <- gsub("ContractOne year", "Contract= One year", name2_fit$Term)
+name2_fit$Term <- gsub("ContractTwo year", "Contract= Two year", name2_fit$Term)
+name2_fit$Term <- gsub("genderMale", "Gender= Male", name2_fit$Term)
+name2_fit$Term <- gsub("SeniorCitizen", "Senior Citizen", name2_fit$Term)
+name2_fit$Term <- gsub("PartnerYes", "Partner= Yes", name2_fit$Term)
+name2_fit$Term <- gsub("DependentsYes", "Dependents= Yes", name2_fit$Term)
+name2_fit$Term <- gsub("InternetServiceFiber optic", "Internet Service= Fiber optic", name2_fit$Term)
+name2_fit$Term <- gsub("InternetServiceNo", "Internet Service= No", name2_fit$Term)
+name2_fit$Term <- gsub("PhoneServiceYes", "Phone Service= Yes", name2_fit$Term)
+name2_fit$Term <- gsub("PaperlessBillingYes", "Paperless Billing= Yes", name2_fit$Term)
+
+print(name2_fit)
+```
+One year lower hazard
+Males have slightly lower
+Partner lower
+
